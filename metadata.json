@@ -1,0 +1,6 @@
+{
+  "name": "爱宠宜家",
+  "description": "A beautiful, heartfelt pet adoption platform to connect hopeful pets with loving homes, featuring dynamic profiles, multi-step adoption applications, search with filters, message center, and adoption progress flows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

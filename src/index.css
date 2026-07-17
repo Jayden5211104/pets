@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-display: "Quicksand", "Noto Sans SC", sans-serif;
+
+  --color-primary: #9b4500;
+  --color-primary-container: #ff8c42;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #6a2d00;
+
+  --color-secondary: #006685;
+  --color-secondary-container: #7fd7ff;
+  --color-on-secondary-container: #005d7a;
+
+  --color-tertiary: #785a00;
+  --color-tertiary-container: #cfa53f;
+  --color-on-tertiary-container: #513c00;
+
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+
+  --color-surface: #ffffff;
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #564338;
+  --color-outline: #897266;
+  --color-outline-variant: #ddc1b3;
+}
+
+/* ============================================
+   移动端全局样式
+   ============================================ */
+
+/* 阻止 iOS 字体缩放 */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 安全区撑满 + 禁止意外滚动 */
+body {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  /* 全面屏安全区 */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* App 感：禁止长按选中文本（图片、按钮等交互元素保留） */
+body,
+input,
+textarea,
+h1, h2, h3, h4, h5, h6,
+p, span, label {
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* 移除移动端点击高亮 */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* 按钮最小触摸区域 */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* 禁止 iOS 橡皮筋回弹（在 html/body 层级不生效，需在滚动容器上设置） */
+.no-bounce {
+  overscroll-behavior: none;
+}
+
+/* 自定义阴影 */
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(155, 69, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+.shadow-soft-2 {
+  box-shadow: 0 8px 30px rgba(155, 69, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* 圆角按钮 */
+.rounded-button {
+  border-radius: 2rem;
+}
+
+/* ============================================
+   动画
+   ============================================ */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in  { animation: fade-in  0.25s ease-out; }
+.animate-slide-up { animation: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.animate-scale-in { animation: scale-in 0.2s ease-out; }
+
+/* ============================================
+   安全区适配工具类
+   ============================================ */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 16px);
+}
+
+/* ============================================
+   滚动条（保持极细，移动端基本不可见）
+   ============================================ */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddc1b3;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #897266;
+}
