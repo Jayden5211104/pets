@@ -20,9 +20,13 @@ const PORT = process.env.PORT || 3001;
 // ============================================
 // 中间件配置
 // ============================================
-app.use(helmet()); // 安全头设置
+// Vercel 自行管理安全头，本地开发启用 helmet
+if (process.env.VERCEL !== '1') {
+  app.use(helmet());
+}
+// Vercel 上同域部署无需 CORS，本地开发允许 localhost:3000
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: process.env.VERCEL === '1' ? true : (process.env.FRONTEND_URL || 'http://localhost:3000'),
   credentials: true
 }));
 app.use(morgan('dev')); // 日志

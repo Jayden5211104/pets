@@ -1,13 +1,14 @@
+import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// 在非 Vercel 环境下从 .env 文件加载环境变量
+// 在非 Vercel 环境下从 .env 文件加载
 // Vercel 会自动注入环境变量，无需 .env 文件
 if (process.env.VERCEL !== '1') {
-  dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+  // 尝试多种路径解析方式，兼容 ESM 和 CJS
+  const envPath = path.resolve(process.cwd(), 'backend/.env');
+  dotenv.config({ path: envPath });
 }
-
-import { createClient } from '@supabase/supabase-js';
 
 // Supabase配置
 const supabaseUrl = process.env.SUPABASE_URL || '';
