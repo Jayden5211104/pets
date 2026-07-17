@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+  --font-display: "Quicksand", "Noto Sans SC", sans-serif;
+
+  --color-primary: #9b4500;
+  --color-primary-container: #ff8c42;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #6a2d00;
+
+  --color-secondary: #006685;
+  --color-secondary-container: #7fd7ff;
+  --color-on-secondary-container: #005d7a;
+
+  --color-tertiary: #785a00;
+  --color-tertiary-container: #cfa53f;
+  --color-on-tertiary-container: #513c00;
+
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+
+  --color-surface: #ffffff;
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #564338;
+  --color-outline: #897266;
+  --color-outline-variant: #ddc1b3;
+
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-amber-500: #f59e0b;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(155, 69, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.shadow-soft-2 {
+  box-shadow: 0 8px 30px rgba(155, 69, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.rounded-button {
+  border-radius: 2rem;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in { animation: fade-in 0.25s ease-out; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #ddc1b3; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #897266; }

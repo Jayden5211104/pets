@@ -6,8 +6,16 @@
   "installCommand": "npm install",
   "rewrites": [
     {
+      "source": "/api/admin/(.*)",
+      "destination": "/api/admin"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api"
+    },
+    {
+      "source": "/admin(.*)",
+      "destination": "/admin/index.html"
     },
     {
       "source": "/(.*)",
@@ -16,6 +24,10 @@
   ],
   "functions": {
     "api/index.ts": {
+      "memory": 512,
+      "maxDuration": 30
+    },
+    "api/admin.ts": {
       "memory": 512,
       "maxDuration": 30
     }

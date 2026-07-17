@@ -60,7 +60,7 @@ app.get('/', (_req, res) => {
 app.get('/pets', async (req, res) => {
   try {
     const { category, size, location, search } = req.query;
-    let query = getSupabase().from('pets').select('*, shelters(id, name, location, distance, logo_url)');
+    let query = getSupabase().from('pets').select('*, shelters(id, name, location, distance, logo_url)').eq('is_online', true);
     if (category) query = query.eq('category', category as string);
     if (size) query = query.eq('size', size as string);
     if (location) query = query.ilike('location', `%${location}%`);
