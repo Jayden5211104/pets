@@ -6,7 +6,14 @@
  * { success: boolean, data?: T, count?: number, message?: string, error?: string }
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+/**
+ * API 地址解析
+ * - 开发环境: http://localhost:3001/api (独立后端)
+ * - Vercel预览/生产: /api (同域 Serverless Function)
+ */
+const API_BASE_URL = import.meta.env.PROD
+  ? '/api'
+  : (import.meta.env.VITE_API_URL || 'http://localhost:3001/api');
 
 // ============================================
 // 通用请求工具
@@ -206,9 +213,11 @@ export const shelterApi = {
 // ============================================
 export async function checkBackendHealth(): Promise<boolean> {
   try {
-    const res = await fetch(`${API_BASE_URL.replace('/api', '')}/`);
+    // 请求 /api/pets? 来验证后端可用，生产环境使用相对路径
+    const healthUrl = import.meta.env.PROD ? '/api/pets' : `${API_BASE_URL}/pets`;
+    const res = await fetch(healthUrl);
     const data = await res.json();
-    return !!data.message;
+    return data.success === true;
   } catch {
     return false;
   }

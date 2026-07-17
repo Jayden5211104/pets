@@ -1,8 +1,11 @@
 import dotenv from 'dotenv';
 import path from 'path';
 
-// 确保环境变量在模块加载时就被读取
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+// 在非 Vercel 环境下从 .env 文件加载环境变量
+// Vercel 会自动注入环境变量，无需 .env 文件
+if (process.env.VERCEL !== '1') {
+  dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+}
 
 import { createClient } from '@supabase/supabase-js';
 
@@ -11,7 +14,7 @@ const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '';
 
 if (!supabaseUrl || !supabaseKey) {
-  console.error('❌ 缺少Supabase配置！请检查.env文件中的SUPABASE_URL和SUPABASE_ANON_KEY');
+  console.error('❌ 缺少Supabase配置！请检查环境变量 SUPABASE_URL 和 SUPABASE_ANON_KEY');
 }
 
 // 创建Supabase客户端

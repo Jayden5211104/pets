@@ -76,13 +76,17 @@ app.use((req: Request, res: Response) => {
 });
 
 // ============================================
-// 启动服务器
+// 启动服务器（仅开发环境或独立运行时）
 // ============================================
-app.listen(PORT, () => {
-  console.log(`\n🐕 爱宠宜家后端服务已启动！`);
-  console.log(`📍 地址: http://localhost:${PORT}`);
-  console.log(`🌍 环境: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`⏰ 时间: ${new Date().toLocaleString('zh-CN')}\n`);
-});
+// Vercel Serverless 环境下不执行 app.listen()
+const isVercel = process.env.VERCEL === '1';
+if (!isVercel) {
+  app.listen(PORT, () => {
+    console.log(`\n🐕 爱宠宜家后端服务已启动！`);
+    console.log(`📍 地址: http://localhost:${PORT}`);
+    console.log(`🌍 环境: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`⏰ 时间: ${new Date().toLocaleString('zh-CN')}\n`);
+  });
+}
 
 export default app;
